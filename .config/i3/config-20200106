@@ -1,0 +1,271 @@
+#===============set fonts====================================
+font pango:Source Code Pro,EmojiOne Color 10
+
+#==============Theme colors================================
+client.focused          #272827 #272827 #657b83 #272827 #272827
+client.focused_inactive #272827 #272827 #657b83 #272827 #272827
+client.unfocused        #272827 #272827 #657b83 #272827 #272827
+client.urgent           #272827 #272827 #657b83 #272827 #272827
+client.placeholder      #272827 #272827 #657b83 #272827 #272827
+client.background       #272827
+
+#============= set Mod ====================================
+set $mod Mod1
+set $win Mod4
+set $my-dir $HOME/.config/i3
+
+#============set widows border=================
+new_window none
+default_border pixel 1
+
+#=================auto start==================
+exec mpd ~/.config/mpd/mpd.conf             
+exec --no-startup-id compton -b
+exec_always --no-startup-id feh 
+exec --no-startup-id electron-ssr
+exec_always --no-startup-id fcitx
+#exec_always --no-startup-id conky
+exec sh $my-dir/scripts/wallpaper.sh
+exec urxvt  -sh 40
+#exec urxvt -sh 40 -e ~/.config/i3/bright.sh
+exec_always --no-startup-id dunst
+#exec_always --no-startup-id nm-applet
+exec_always --no-startup-id blueman-applet
+#exec_always --no-startup-id xfce4-power-manager
+# Autostart applications                                                         
+#exec --no-startup-id nitrogen --restore; sleep 1; compton -b                     
+#exec --no-startup-id pamac-tray                                                  
+#exec --no-startup-id clipit                                                      
+#exec_always --no-startup-id ff-theme-util                                        
+#exec_always --no-startup-id fix_xcursor 
+#exec --no-startup-id utools
+#=================状态栏=================
+#bar {
+# i3bar_command i3bar -t
+# status_command py3status
+# position top
+# modifier Shift
+# separator_symbol "|"
+#  colors {
+#   background #000000AA
+#   separator #000000FF
+#   focused_workspace #B8F788 #000000AA
+#   active_workspace #FFFFFF #FFFFFFAA
+#   inactive_workspace #AAAAAA #000000AA #AAAAAA
+#   urgent_workspace #E57B85 #000000AA
+#}
+#}
+# 截图
+## bindsym Print exec shutter -f -e -o ~/图片/%Y-%m-%d-%T.png
+## bindsym $mod+Print exec shutter -s -e -o ~/图片/%Y-%m-%d-%T.png
+bindsym Print exec deepin-screenshot
+
+#  for screen lock
+bindsym $mod+l exec i3lock-fancy
+
+# for sound control  
+bindsym XF86AudioRaiseVolume exec amixer set Master 5000+
+bindsym $mod+Shift+plus exec amixer set Master 5000+
+bindsym XF86AudioLowerVolume exec amixer set Master 5000-
+bindsym $mod+Shift+minus exec amixer set Master 5000-
+bindsym XF86AudioMute exec amixer set Master toggle
+
+# Screen brightness controls use backlight
+bindsym XF86MonBrightnessUp exec sh ~/.config/i3/brightup.sh # increase screen brightness
+bindsym XF86MonBrightnessDown exec sh ~/.config/i3/brightdown.sh # decrease screen brightness
+
+# Font for window titles. Will also be used by the bar unless a different font
+#font pango:ttf-liberation-mono 0 
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# run rofi
+bindsym $mod+d exec rofi -show run
+bindsym $win+d exec rofi -show drun
+bindsym $mod+q exec rofi -show window
+
+# start a terminal
+bindsym $mod+Return exec urxvt -sh 40
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# change focus
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+j move left
+bindsym $mod+Shift+k move down
+bindsym $mod+Shift+l move up
+bindsym $mod+Shift+semicolon move right
+
+# exec cmatrix
+bindsym $mod+Shift+x exec urxvt -sh 40 -e cmatrix 
+
+# exec ranger
+bindsym $mod+Ctrl+r exec urxvt -e ranger
+
+# control music
+bindsym $mod+Ctrl+m exec urxvt -sh 40 -e ncmpcpp
+bindsym $mod+Ctrl+p exec mpc play
+bindsym $mod+Ctrl+o exec mpc pause
+bindsym $mod+Ctrl+l exec mpc next
+bindsym $mod+Ctrl+k exec mpc prev
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split in horizontal orientation
+bindsym $mod+h split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# hide | show window
+bindsym $mod+minus move scratchpad
+bindsym $mod+plus scratchpad show
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle 
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# navigate workspaces next /previous
+bindsym $mod+Tab workspace next
+bindsym $mod+Shift+Tab workspace prev
+
+set $ws1 "1:"
+set $ws2 "2:"
+set $ws3 "3:"
+set $ws4 "4:"
+set $ws5 "5:"
+set $ws6 "6:"
+set $ws7 "7:"
+set $ws8 8
+set $ws9 9
+
+# switch to workspace
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+
+# Automatically putting clients on specific workspaces
+assign [class="chrome"] $ws2
+assign [class="netease-cloud-music"] $ws4
+assign [class="wechat"] $ws3
+
+# window set
+# Open specific applications in floating mode                                    
+for_window [title="alsamixer"] floating enable border pixel 1                    
+for_window [class="Calamares"] floating enable border normal                     
+for_window [class="Clipgrab"] floating enable                                    
+for_window [title="File Transfer*"] floating enable                                                                                               
+for_window [class="Galculator"] floating enable border pixel 1                   
+for_window [class="GParted"] floating enable border normal                       
+for_window [title="i3_help"] floating enable sticky enable border normal         
+for_window [class="Lightdm-gtk-greeter-settings"] floating enable                
+for_window [class="Lxappearance"] floating enable sticky enable border normal    
+for_window [class="Manjaro-hello"] floating enable                               
+for_window [class="Manjaro Settings Manager"] floating enable border normal      
+for_window [title="MuseScore: Play Panel"] floating enable                       
+for_window [class="Nitrogen"] floating enable sticky enable border normal        
+for_window [class="Oblogout"] fullscreen enable                                  
+for_window [class="octopi"] floating enable                                      
+for_window [title="About Pale Moon"] floating enable                             
+for_window [class="Pamac-manager"] floating enable                               
+for_window [class="Pavucontrol"] floating enable                                 
+for_window [class="qt5ct"] floating enable sticky enable border normal           
+for_window [class="Qtconfig-qt4"] floating enable sticky enable border normal    
+for_window [class="Simple-scan"] floating enable border normal                   
+for_window [class="(?i)System-config-printer.py"] floating enable border normal  
+for_window [class="Skype"] floating enable border normal                         
+for_window [class="Thus"] floating enable border normal                          
+for_window [class="Timeset-gui"] floating enable border normal                   
+for_window [class="(?i)virtualbox"] floating enable border normal                
+for_window [class="Xfburn"] floating enable                                      
+                                                                                  
+# switch to workspace with urgent window automatically                           
+for_window [urgent=latest] focus        
+
+# disable follows_mouse
+focus_follows_mouse no
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+bindsym $mod+r mode "resize"
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym j resize shrink width 5 px or 5 ppt
+        bindsym k resize grow height 5 px or 5 ppt
+        bindsym l resize shrink height 5 px or 5 ppt
+        bindsym semicolon resize grow width 5 px or 5 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # exit resize mode: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+# i3-gaps config inner/outter gap   10  5
+title_align center
+gaps inner 5
+gaps outer 5
+#smart_gaps on
+smart_borders on
+
+# run polybar 
+exec_always --no-startup-id sh $HOME/.config/polybar/launch.sh
+#exec_always xautolock -time 10 -locker "i3lock-fancy"
+
