@@ -1,0 +1,1 @@
+/home/cwx/Dev/Data/Arch/DotFiles-master/xinitrc
