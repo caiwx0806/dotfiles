@@ -1,0 +1,11 @@
+ncmpcpp_directory =         "~/.ncmpcpp"
+mpd_host =                  "127.0.0.1"
+mpd_port =                  "6600"
+mpd_music_dir =	            "/home/cwx/Music/"
+visualizer_fifo_path = "/tmp/mpd.fifo"
+visualizer_output_name = "my_fifo"
+visualizer_sync_interval = "30"
+visualizer_in_stereo = "yes"
+visualizer_type = "spectrum"
+visualizer_look = "+|"
+execute_on_song_change =通知发送“正在播放”“ $（mpc --format'％title％\ n％artist％-％album％'当前）”
