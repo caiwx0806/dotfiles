@@ -27,6 +27,8 @@ set $gaps_resize 4
 # Percentage to raise/lower the volume with each keypress
 set $volume_change 5
 
+set $mpd ncmpcpp
+
 #
 #  /\  _  _ | . _ _ _|_. _  _  _
 # /--\|_)|_)|_|(_(_| | |(_)| |_)
@@ -324,16 +326,17 @@ bindsym $mod+Shift+x mode $mode_power
 #                   |
 
 bindsym $mod+t [instance="^term$"] scratchpad show; [instance="^term$"] move position center
-bindsym $mod+m [instance="^math$"] scratchpad show; [instance="^math$"] move position center
+bindsym $mod+m [instance="^mpd$"] scratchpad show; [instance="^mpd$"] move position center
+#bindsym $mod+m [instance="^math$"] scratchpad show; [instance="^math$"] move position center
 
-for_window [instance="^term$|^math$"] floating enable
-for_window [instance="^term$|^math$"] resize set $scratchpad_size
-for_window [instance="^term$|^math$"] border pixel $scratchpad_border
-for_window [instance="^term$|^math$"] move scratchpad
+for_window [instance="^term$|^mpd$"] floating enable
+for_window [instance="^term$|^mpd$"] resize set $scratchpad_size
+for_window [instance="^term$|^mpd$"] border pixel $scratchpad_border
+for_window [instance="^term$|^mpd$"] move scratchpad
 
 exec --no-startup-id $term -name term
-exec --no-startup-id $term -name math -e R -q
-
+exec --no-startup-id $term -name mpd -e $mpd -q
+#exec --no-startup-id $term -name math -e R -q
 
 #
 #  /\    _|_ _  __|_ _  __|_
